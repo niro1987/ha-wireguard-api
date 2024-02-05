@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0", "setuptools_scm[toml]>=6.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "python-package-template"
+name = "ha_wireguard_api"
 authors = [{ name = "Niels Perfors", email = "niels.perfors1987@gmail.com" }]
-description = "A template repository to work on a python package intended for publication on pypi.org."
+description = "Asynchronous client for WireGuard status API"
 readme = "README.md"
 requires-python = ">=3.11"
 keywords = ["homeassistant", "wireguard"]
@@ -24,10 +24,10 @@ dev = []
 test = []
 
 [project.urls]
-Homepage = "https://github.com/niro1987/python-package-template"
-Documentation = "https://github.com/niro1987/python-package-template"
-Repository = "https://github.com/niro1987/python-package-template.git"
-Issues = "https://github.com/niro1987/python-package-template/issues"
+Homepage = "https://github.com/niro1987/ha-wireguard-api"
+Documentation = "https://github.com/niro1987/ha-wireguard-api"
+Repository = "https://github.com/niro1987/ha-wireguard-api.git"
+Issues = "https://github.com/niro1987/ha-wireguard-api/issues"
 
 [tool.setuptools]
 zip-safe = false

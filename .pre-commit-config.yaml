@@ -12,6 +12,7 @@ repos:
     hooks:
       - id: codespell
         args:
+          - --ignore-words-list=perfors
           - --skip="./.*,*.csv,*.json"
           - --quiet-level=2
         exclude_types: [csv, json]

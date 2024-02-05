@@ -37,9 +37,10 @@
                 "esbenp.prettier-vscode",
                 "GitHub.vscode-pull-request-github",
                 "eamodio.gitlens",
-                "tamasfe.even-better-toml"
+                "tamasfe.even-better-toml",
+                "github.vscode-github-actions"
             ]
         }
     },
-    "onCreateCommand": "pre-commit install-hooks"
+    "postCreateCommand": "pre-commit install-hooks"
 }

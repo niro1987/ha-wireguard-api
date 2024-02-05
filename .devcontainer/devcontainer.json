@@ -45,5 +45,5 @@
             ]
         }
     },
-    "postCreateCommand": "pre-commit install-hooks"
+    "postCreateCommand": "pre-commit install --install-hooks"
 }

@@ -1,0 +1,20 @@
+// Keep this file in sync with devcontainer.json
+{
+    "python.pythonPath": "/usr/local/bin/python",
+    "python.testing.pytestArgs": [
+        "--no-cov"
+    ],
+    "editor.formatOnPaste": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "files.trimTrailingWhitespace": true,
+    "terminal.integrated.profiles.linux": {
+        "zsh": {
+            "path": "/usr/bin/zsh"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "zsh",
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff"
+    }
+}

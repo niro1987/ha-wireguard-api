@@ -1,19 +1,16 @@
 {
   "name": "Python Package Devcontainer",
   "build": {
-    // Sets the run context to one level up instead of the .devcontainer folder.
     "context": "..",
-    // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
     "dockerfile": "./Dockerfile"
-  },
-  "features": {
-    "ghcr.io/devcontainers-contrib/features/pre-commit": "latest"
   },
   "customizations": {
     "vscode": {
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.testing.pytestArgs": ["tests", "--no-cov"],
+        "python.testing.pytestEnabled": false,
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestArgs": ["--no-cov"],
         "editor.formatOnPaste": false,
         "editor.formatOnSave": true,
         "editor.formatOnType": true,
@@ -26,8 +23,7 @@
         "terminal.integrated.defaultProfile.linux": "zsh",
         "[python]": {
           "editor.defaultFormatter": "charliermarsh.ruff"
-        },
-        "python.testing.pytestEnabled": true
+        }
       },
       "extensions": [
         "ms-python.python",

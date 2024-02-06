@@ -1,4 +1,3 @@
-# Python Package Template
+# HomeAssistant WireGuard status API
 
-A template repository to work on a python package intended for
-publication on pypi.org.
+Asynchronous client for WireGuard status API

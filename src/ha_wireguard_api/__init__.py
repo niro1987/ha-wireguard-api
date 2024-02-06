@@ -18,4 +18,3 @@ __all__ = [
     "WireGuardResponseError",
     "WireGuardPeer",
 ]
-__version__ = "0.1.1"

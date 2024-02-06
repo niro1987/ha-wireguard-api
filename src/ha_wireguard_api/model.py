@@ -11,7 +11,7 @@ class WireGuardPeer:
     """Data representation of a WireGuard peer."""
 
     name: str
-    endpoint: str
+    endpoint: str | None
     latest_handshake: datetime | None
     transfer_rx: int
     transfer_tx: int

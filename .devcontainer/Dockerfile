@@ -1,7 +1,5 @@
 FROM mcr.microsoft.com/vscode/devcontainers/python:0-3.11
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
 # Uninstall pre-installed formatting and linting tools
 # They would conflict with our pinned versions
 RUN pipx uninstall pydocstyle \

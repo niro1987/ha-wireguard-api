@@ -1,4 +1,4 @@
-"""Models for WireGuard status API"""
+"""Models for WireGuard status API."""
 from dataclasses import dataclass
 from datetime import UTC, datetime
 

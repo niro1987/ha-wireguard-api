@@ -1,3 +1,6 @@
 {
-  "recommendations": ["SanaAjani.taskrunnercode"]
+  "recommendations": [
+    "SanaAjani.taskrunnercode",
+    "AmazonWebServices.aws-toolkit-vscode"
+  ]
 }

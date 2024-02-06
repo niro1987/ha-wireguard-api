@@ -1,4 +1,4 @@
-"""Tests for WireGuard status API"""
+"""Tests for WireGuard status API."""
 from pathlib import Path
 
 

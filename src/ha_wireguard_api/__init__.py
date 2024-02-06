@@ -1,4 +1,4 @@
-"""Asynchronous client for HomeAssistant's WireGuard status API"""
+"""Asynchronous client for HomeAssistant's WireGuard status API."""
 from .api import WireguardApiClient
 from .exceptions import (
     WireGuardException,

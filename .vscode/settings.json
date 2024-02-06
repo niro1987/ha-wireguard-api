@@ -1,6 +1,6 @@
 // Keep this file in sync with devcontainer.json
 {
-  "python.pythonPath": "/usr/local/bin/python",
+  "python.defaultInterpreterPath": "/usr/local/bin/python",
   "python.testing.pytestArgs": ["tests"],
   "editor.formatOnPaste": false,
   "editor.formatOnSave": true,

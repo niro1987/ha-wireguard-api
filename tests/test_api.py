@@ -73,3 +73,13 @@ async def test_client_unexpected_content(
     with pytest.raises(WireGuardResponseError) as exc:
         await client._request("localhost")
         assert "Unexpected content" in str(exc)
+
+
+async def test_client_get_status(
+    client: WireguardApiClient, responses: aioresponses
+) -> None:
+    """Test WireguardApiClient get_status."""
+    responses.get("localhost", repeat=True)
+    response = await client._request("localhost")
+    status = await client.get_status()
+    assert response == status

@@ -1,9 +1,11 @@
 """Pytest configuration file containing customizations and fixtures."""
 from collections.abc import AsyncGenerator, Generator
+from datetime import datetime
 
 import aiohttp
 from aioresponses import aioresponses
 from ha_wireguard_api.api import WireguardApiClient
+from ha_wireguard_api.model import WireGuardPeer
 import pytest
 import pytest_socket
 
@@ -38,3 +40,15 @@ def aioresponses_fixture() -> Generator[aioresponses, None, None]:
     """Return aioresponses fixture."""
     with aioresponses() as mocked_responses:
         yield mocked_responses
+
+
+@pytest.fixture()
+def peer() -> WireGuardPeer:
+    """Return a fully populated peer."""
+    return WireGuardPeer(
+        name="Dummy",
+        endpoint="localhost:1234",
+        latest_handshake=datetime(2022, 1, 1),
+        transfer_rx=1234,
+        transfer_tx=4321,
+    )

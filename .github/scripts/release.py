@@ -7,10 +7,11 @@ import subprocess
 def get_last_version() -> str:
     """Return the version number of the last release."""
     json_string = (
-        subprocess.run(
+        subprocess.run(  # noqa: UP022
             ["gh", "release", "view", "--json", "tagName"],
             check=True,
-            capture_output=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
         )
         .stdout.decode("utf8")
         .strip()
@@ -39,7 +40,7 @@ def create_new_patch_release():
         new_version_number = bump_patch_number(last_version_number)
 
     subprocess.run(
-        ["gh", "release", "create", new_version_number, "--generate-notes"],
+        ["gh", "release", "create", "--generate-notes", new_version_number],
         check=True,
     )
 

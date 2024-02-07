@@ -5,7 +5,14 @@ import pytest
 
 from ha_wireguard_api.api import WireguardApiClient
 from ha_wireguard_api.const import REQUEST_TIMEOUT
-from ha_wireguard_api.exceptions import WireGuardResponseError, WireGuardTimeoutError
+from ha_wireguard_api.exceptions import (
+    WireGuardInvalidJson,
+    WireGuardResponseError,
+    WireGuardTimeoutError,
+)
+from ha_wireguard_api.model import WireGuardPeer
+
+from tests import load_fixture
 
 
 async def test_client_init() -> None:
@@ -84,3 +91,21 @@ async def test_client_get_status(
     response = await client._request("localhost")
     status = await client.get_status()
     assert response == status
+
+
+async def test_client_get_peers(
+    client: WireguardApiClient, responses: aioresponses
+) -> None:
+    """Test WireguardApiClient get_peers."""
+    responses.get("localhost", body=load_fixture("data.json"))
+    peers = await client.get_peers()
+    assert all(isinstance(peer, WireGuardPeer) for peer in peers)
+
+
+async def test_client_get_invalid_peers(
+    client: WireguardApiClient, responses: aioresponses
+) -> None:
+    """Test WireguardApiClient get_peers."""
+    responses.get("localhost", body=load_fixture("invalid.json"))
+    with pytest.raises(WireGuardInvalidJson):
+        await client.get_peers()

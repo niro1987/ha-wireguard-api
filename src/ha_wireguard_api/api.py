@@ -7,6 +7,7 @@ from aiohttp import ClientSession
 
 from .const import REQUEST_TIMEOUT, REQUIRED_STATUS
 from .exceptions import WireGuardResponseError, WireGuardTimeoutError
+from .model import WireGuardPeer
 
 
 @dataclass
@@ -47,6 +48,11 @@ class WireguardApiClient:
     async def get_status(self) -> dict[str, Any]:
         """Get the WireGuard status."""
         return await self._request(self.host)
+
+    async def get_peers(self) -> list[WireGuardPeer]:
+        """Get the WireGuard status and convert to list of WireGuardPeer."""
+        wg_status: dict[str, Any] = await self._request(self.host)
+        return [WireGuardPeer.from_data(name, data) for name, data in wg_status.items()]
 
     async def close(self) -> None:
         """Close the client."""

@@ -46,7 +46,7 @@ async def test_client_contextmanager(responses: aioresponses) -> None:
     responses.get("localhost")
     async with WireguardApiClient("localhost") as client:
         assert client.host == "localhost"
-        await client.get_status("localhost")
+        await client.get_status()
         assert client.session is not None
     assert client.session is None
 
@@ -57,7 +57,7 @@ async def test_client_timeout(
     """Test WireguardApiClient timeout."""
     responses.get("localhost", timeout=True)
     with pytest.raises(WireGuardTimeoutError) as exc:
-        await client.get_status("localhost")
+        await client.get_status()
         assert "Timeout occurred" in str(exc)
 
 
@@ -67,7 +67,7 @@ async def test_client_unexpected_status(
     """Test WireguardApiClient unexpected status."""
     responses.get("localhost", status=500)
     with pytest.raises(WireGuardResponseError) as exc:
-        await client.get_status("localhost")
+        await client.get_status()
         assert "Unexpected status" in str(exc)
 
 
@@ -77,7 +77,7 @@ async def test_client_unexpected_content(
     """Test WireguardApiClient unexpected content."""
     responses.get("localhost", content_type="text/plain")
     with pytest.raises(WireGuardResponseError) as exc:
-        await client.get_status("localhost")
+        await client.get_status()
         assert "Unexpected content" in str(exc)
 
 

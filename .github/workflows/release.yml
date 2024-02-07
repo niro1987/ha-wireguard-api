@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Make the script files executable
+        run: chmod +x .github/scripts/release.py
       - name: Create new patch release
         run: .github/scripts/release.py
         env:

@@ -17,15 +17,15 @@ def pytest_runtest_setup():
     pytest_socket.disable_socket(allow_unix_socket=True)
 
 
-@pytest.fixture()
-async def session() -> AsyncGenerator[aiohttp.ClientSession, None]:
+@pytest.fixture(name="session")
+async def fixture_session() -> AsyncGenerator[aiohttp.ClientSession, None]:
     """Return a ClientSession."""
     async with aiohttp.ClientSession() as session:
         yield session
 
 
-@pytest.fixture()
-async def client(
+@pytest.fixture(name="client")
+async def fixture_client(
     session: aiohttp.ClientSession,
 ) -> AsyncGenerator[WireguardApiClient, None]:
     """Return a Spotify client."""
@@ -37,14 +37,14 @@ async def client(
 
 
 @pytest.fixture(name="responses")
-def aioresponses_fixture() -> Generator[aioresponses, None, None]:
+def fixture_responses() -> Generator[aioresponses, None, None]:
     """Return aioresponses fixture."""
     with aioresponses() as mocked_responses:
         yield mocked_responses
 
 
-@pytest.fixture()
-def peer() -> WireGuardPeer:
+@pytest.fixture(name="peer")
+def fixture_peer() -> WireGuardPeer:
     """Return a fully populated peer."""
     return WireGuardPeer(
         name="Dummy",

@@ -1,12 +1,13 @@
 """Asynchronous client for WireGuard status API."""
 import asyncio
 from dataclasses import dataclass
-from typing import Self
+from typing import Any, Self
 
 from aiohttp import ClientSession
 
 from .const import REQUEST_TIMEOUT, REQUIRED_STATUS
 from .exceptions import WireGuardResponseError, WireGuardTimeoutError
+from .model import WireGuardPeer
 
 
 @dataclass
@@ -17,7 +18,7 @@ class WireguardApiClient:
     session: ClientSession | None = None
     request_timeout: int = REQUEST_TIMEOUT
 
-    async def _request(self, host: str) -> str:
+    async def _request(self, host: str) -> dict[str, Any]:
         """Handle a request to the wireGuard status API."""
         if self.session is None:
             self.session = ClientSession()
@@ -44,9 +45,14 @@ class WireguardApiClient:
 
         return await response.json()
 
-    async def get_status(self) -> dict:
+    async def get_status(self) -> dict[str, Any]:
         """Get the WireGuard status."""
         return await self._request(self.host)
+
+    async def get_peers(self) -> list[WireGuardPeer]:
+        """Get the WireGuard status and convert to list of WireGuardPeer."""
+        wg_status: dict[str, Any] = await self._request(self.host)
+        return [WireGuardPeer.from_data(name, data) for name, data in wg_status.items()]
 
     async def close(self) -> None:
         """Close the client."""

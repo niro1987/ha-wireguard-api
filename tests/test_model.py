@@ -2,11 +2,12 @@
 from dataclasses import FrozenInstanceError
 from datetime import datetime
 
-from ha_wireguard_api.exceptions import WireGuardInvalidJson
-from ha_wireguard_api.model import WireGuardPeer
 import pytest
 
-from tests import load_fixture
+from ha_wireguard_api.exceptions import WireGuardInvalidJson
+from ha_wireguard_api.model import WireGuardPeer
+
+from tests import load_json_fixture
 
 
 def test_peer() -> None:
@@ -53,7 +54,7 @@ def test_peer_frozen(peer: WireGuardPeer) -> None:
 
 def test_peer_from_data() -> None:
     """Test creation of WireGuardPeer from data."""
-    json = load_fixture("data.json")
+    json = load_json_fixture("data.json")
     name, data = json.popitem()
 
     peer = WireGuardPeer.from_data(name, data)
@@ -66,7 +67,7 @@ def test_peer_from_data() -> None:
 
 def test_peer_from_invalid_data() -> None:
     """Test creation of WireGuardPeer with invalid data."""
-    json = load_fixture("invalid.json")
+    json = load_json_fixture("invalid.json")
     name, data = json.popitem()
 
     with pytest.raises(WireGuardInvalidJson):

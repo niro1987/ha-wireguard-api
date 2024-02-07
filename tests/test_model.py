@@ -2,9 +2,10 @@
 from dataclasses import FrozenInstanceError
 from datetime import datetime
 
+import pytest
+
 from ha_wireguard_api.exceptions import WireGuardInvalidJson
 from ha_wireguard_api.model import WireGuardPeer
-import pytest
 
 from tests import load_fixture
 

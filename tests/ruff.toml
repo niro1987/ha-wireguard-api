@@ -14,10 +14,15 @@ extend-select = [
 ]
 
 extend-ignore = [
-    "PLC", # pylint
-    "PLE", # pylint
-    "PLR", # pylint
-    "PLW", # pylint
+    "PLC",  # pylint
+    "PLE",  # pylint
+    "PLR",  # pylint
+    "PLW",  # pylint
     "B904", # Use raise from to specify exception cause
     "N815", # Variable {name} in class scope should not be mixedCase
 ]
+
+[lint.isort]
+known-first-party = ["ha_wireguard_api", "tests"]
+known-third-party = ["pytest"]
+forced-separate = ["tests"]

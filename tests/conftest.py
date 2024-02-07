@@ -4,10 +4,11 @@ from datetime import datetime
 
 import aiohttp
 from aioresponses import aioresponses
-from ha_wireguard_api.api import WireguardApiClient
-from ha_wireguard_api.model import WireGuardPeer
 import pytest
 import pytest_socket
+
+from ha_wireguard_api.api import WireguardApiClient
+from ha_wireguard_api.model import WireGuardPeer
 
 
 def pytest_runtest_setup():

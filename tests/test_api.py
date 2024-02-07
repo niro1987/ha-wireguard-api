@@ -1,10 +1,11 @@
 """Tests for api.py."""
 import aiohttp
 from aioresponses import aioresponses
+import pytest
+
 from ha_wireguard_api.api import WireguardApiClient
 from ha_wireguard_api.const import REQUEST_TIMEOUT
 from ha_wireguard_api.exceptions import WireGuardResponseError, WireGuardTimeoutError
-import pytest
 
 
 async def test_client_init() -> None:
